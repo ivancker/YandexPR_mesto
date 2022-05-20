@@ -1,4 +1,5 @@
-.elements__card {
+.element {
   background-color: white;
   border-radius: 10px;
+  max-width: 100%;
 }

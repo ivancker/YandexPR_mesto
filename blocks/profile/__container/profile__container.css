@@ -1,5 +1,10 @@
 .profile__container {
   display: flex;
-  position: relative;
-  border: 1px red solid;
+  align-items: center;
+}
+
+@media all and (max-width: 700px) {
+  .profile__container {
+    flex-direction: column;
+  }
 }

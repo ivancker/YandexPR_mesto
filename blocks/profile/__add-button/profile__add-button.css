@@ -2,10 +2,17 @@
   width: 150px;
   height: 50px;
   background-image: url("../../../images/button-addProfile-white.svg");
-  background-color: black;
+  background-color: transparent;
   background-position: center;
   background-repeat: no-repeat;
   border: 2px white solid;
   border-radius: 2px;
   cursor: pointer;
+}
+
+@media all and (max-width: 700px) {
+  .profile__add-button {
+    width: 282px;
+    margin-top: 36px;
+  }
 }
