@@ -8,3 +8,15 @@
   height: 19px;
   cursor: pointer;
 }
+
+.element__button-like:active {
+  background-image: url(../../../images/button-like-active.svg);
+}
+
+.element__button-like:disabled {
+  background-color: transparent;
+}
+
+.element__button-like:hover {
+  opacity: 0.5;
+}
