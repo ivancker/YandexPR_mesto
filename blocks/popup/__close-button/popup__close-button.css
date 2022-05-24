@@ -15,3 +15,13 @@
 .popup__close-button:hover {
   opacity: 0.6;
 }
+
+@media all and (max-width: 700px) {
+  .popup__close-button {
+    background-image: url("../../../images/closeIcone-white-mob.svg");
+    width: 20px;
+    height: 20px;
+    top: -35px;
+    right: 5px;
+  }
+}
