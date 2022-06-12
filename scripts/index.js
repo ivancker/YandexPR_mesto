@@ -13,7 +13,8 @@ const profileDescription = document.querySelector('.profile__description');
 const inputName = document.querySelector('.popup__input_value_name');
 const inputDescription = document.querySelector('.popup__input_value_description');
 
-
+//const cardList = document.querySelector('.elements'); //карточки
+//const elementTemplate = document.getElementById('element-template').content;
 
 const initialCards = [
     {
@@ -49,14 +50,20 @@ function openPopup() {
 }
 function closePopup() {
     popup.classList.remove('popup_opened');
-}
+};
+
+// closePopupButton.forEach((item) => {
+  // item.addEventListener('clik', () => {
+    // closePopup(popupAddCard)
+  // });
+// });
 
 function openAddCardPopup() {
     popupAddCard.classList.add('popup_opened');
-}
+};
 function closeAddCardPopup() {
     popupAddCard.classList.remove('popup_opened');
-}
+};
 
 
 function formSubmitHandler(evt) {
@@ -64,7 +71,7 @@ function formSubmitHandler(evt) {
     profileName.textContent = inputName.value;
     profileDescription.textContent = inputDescription.value;
     closePopup();
-}
+};
 
 openPopupButton.addEventListener('click', openPopup);
 openAddCardPopupButton.addEventListener('click', openAddCardPopup);
@@ -72,3 +79,15 @@ closeAddCardPopupButton.addEventListener('click', closeAddCardPopup);
 
 closePopupButton.addEventListener('click', closePopup);
 popupForm.addEventListener('submit', formSubmitHandler);
+
+
+// Like
+const songTemplate = document.querySelector('.elements').content;
+const songElement = songTemplate.cloneNode(true);
+
+songElement.querySelector('.element__button-like').addEventListener('click', function (evt) {
+  evt.target.classList.toggle('element__button-like_active')
+});
+
+console.log(songTemplate);
+console.log(songElement);
