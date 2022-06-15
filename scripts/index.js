@@ -14,7 +14,7 @@ const inputName = document.querySelector('.popup__input_value_name');
 const inputDescription = document.querySelector('.popup__input_value_description');
 
 //const cardList = document.querySelector('.elements'); //карточки
-//const elementTemplate = document.getElementById('element-template').content;
+//const elementTemplate = document.getElementById('element-template').content;add
 
 const initialCards = [
     {
