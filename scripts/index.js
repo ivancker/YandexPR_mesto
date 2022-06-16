@@ -4,8 +4,6 @@ const openAddCardPopupButton = document.querySelector('.profile__add-button');
 
 const closeAddCardPopupButton = document.querySelector('.popup-add-card__close-button');
 const popupAddCard = document.querySelector('.popup-add-card');
-const popupAddCardSaveButton = document.querySelector('.popup-add-card__save-button');
-const popupAddCardForm = document.querySelector('.popup-add-card__form');
 
 
 const popup = document.querySelector('.popup');
@@ -33,8 +31,8 @@ const initialCards = [
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
     },
     {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+      name: 'Майами',
+      link: 'https://images.unsplash.com/photo-1568819317551-31051b37f69f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
     },
     {
       name: 'Байкал',
@@ -84,8 +82,8 @@ const popupOpenTitle = document.querySelector(".popup-picture__title");
 
 const popupPictureCloseButton = document.querySelector(".popup-picture__close-button");
 
-const inputTitle = document.querySelector(".popup__input_value_title"); //название места карточки в форме
-const inputLink = document.querySelector(".popup__input_value_link"); //картинка карточки в форме
+const inputTitle = document.querySelector(".popup__input_value_title");
+const inputLink = document.querySelector(".popup__input_value_link");
 
 
 function openCardPopup() {
