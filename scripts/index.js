@@ -1,20 +1,19 @@
 const openPopupButton = document.querySelector('.profile__edit-button');
 const closePopupButton = document.querySelector('.popup__close-button');
-
 const openAddCardPopupButton = document.querySelector('.profile__add-button');
+
 const closeAddCardPopupButton = document.querySelector('.popup-add-card__close-button');
 const popupAddCard = document.querySelector('.popup-add-card');
+const popupAddCardSaveButton = document.querySelector('.popup-add-card__save-button');
+const popupAddCardForm = document.querySelector('.popup-add-card__form');
 
 
 const popup = document.querySelector('.popup');
-const popupForm = document.querySelector('.popup__form')
+const popupForm = document.querySelector('.popup__form');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 const inputName = document.querySelector('.popup__input_value_name');
 const inputDescription = document.querySelector('.popup__input_value_description');
-
-//const cardList = document.querySelector('.elements'); //карточки
-//const elementTemplate = document.getElementById('element-template').content;add
 
 const initialCards = [
     {
@@ -52,11 +51,6 @@ function closePopup() {
     popup.classList.remove('popup_opened');
 };
 
-// closePopupButton.forEach((item) => {
-  // item.addEventListener('clik', () => {
-    // closePopup(popupAddCard)
-  // });
-// });
 
 function openAddCardPopup() {
     popupAddCard.classList.add('popup_opened');
@@ -80,18 +74,6 @@ closePopupButton.addEventListener('click', closePopup);
 popupForm.addEventListener('submit', formSubmitHandler);
 
 
-// Like
-/* const songTemplate = document.querySelector('.elements').content;
-const songElement = songTemplate.cloneNode(true);
-
-songElement.querySelector('.element__button-like').addEventListener('click', function (evt) {
-  evt.target.classList.toggle('element__button-like_active')
-});
-
-console.log(songTemplate);
-console.log(songElement); */
-
-// Crads
 
 const placeForCards = document.querySelector('.elements');
 const elementTemplate = document.getElementById("element-template").content;
@@ -99,6 +81,37 @@ const elementTemplate = document.getElementById("element-template").content;
 const popupPicture = document.querySelector(".popup-picture");
 const popupOpenPicture = document.querySelector(".popup-picture__image");
 const popupOpenTitle = document.querySelector(".popup-picture__title");
+
+const popupPictureCloseButton = document.querySelector(".popup-picture__close-button");
+
+const inputTitle = document.querySelector(".popup__input_value_title"); //название места карточки в форме
+const inputLink = document.querySelector(".popup__input_value_link"); //картинка карточки в форме
+
+
+function openCardPopup() {
+  popupPicture.classList.add('popup_opened');
+};
+function closeCardPopup() {
+  popupPicture.classList.remove('popup_opened');
+};
+popupPictureCloseButton.addEventListener('click', closeCardPopup);
+
+
+const addCard = (data) => {
+  placeForCards.prepend(data);
+}
+
+function handleAddCardSubmit(evt) {
+  evt.preventDefault();
+  const card = {};
+  card.name = inputTitle.value;
+  card.link = inputLink.value;
+  addCard(renderCard(card));
+  evt.target.reset();
+  closeAddCardPopup(popupAddCard);
+}
+
+popupAddCard.addEventListener("submit", handleAddCardSubmit);
 
 function renderPlaceForCards(data) {
   data.forEach((item) => {
@@ -129,26 +142,11 @@ const renderCard = ({link,name})=>{
         popupOpenPicture.src = link;
         popupOpenTitle.alt = name;
         popupOpenTitle.textContent = name;
-        openPopup(popupPicture);
+        openCardPopup(popupPicture);
       });
 
 
     return addElement;
 }
-
-
-/*
-function renderItem({ link, name }) {
-  let template = `<article class="element">
-  <button type="button" class="element__button-delete"></button>
-  <img class="element__image" src="${link}" alt="">
-  <div class="element__discription">
-    <h2 class="element__title">${name}</h2>
-    <button type="button" class="element__button-like"></button>
-  </div>
-</article>`
-  placeForCards.insertAdjacentHTML('beforeend', template);
-}
-*/
 
 renderPlaceForCards(initialCards);
