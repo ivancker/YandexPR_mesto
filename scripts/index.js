@@ -89,6 +89,7 @@ function handleAddCardSubmit(evt) {
   addCard(renderCard(card));
   evt.target.reset();
   closePopup(popupAddCard);
+  enableValidation(settingsObject);
 };
 
 popupAddCard.addEventListener("submit", handleAddCardSubmit);
