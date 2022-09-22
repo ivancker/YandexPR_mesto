@@ -1,5 +1,6 @@
 import Card from './Card.js';
-import { initialCards } from './cards.js';
+import FormValidator from './FormValidator.js';
+import { initialCards } from './initialCards.js';
 
 const profileOpenBtn = document.querySelector('.profile__edit-button');
 const profileCloseBtn = document.querySelector('.popup__close-button');
@@ -21,6 +22,19 @@ const popupOpenTitle = document.querySelector(".popup-picture__title");
 const popupPictureCloseButton = document.querySelector(".popup-picture__close-button");
 const inputTitle = document.querySelector(".popup__input_value_title");
 const inputLink = document.querySelector(".popup__input_value_link");
+
+const settingsObject = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: "popup__save-button_inactive",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_active",
+};
+
+const correctionFormValidator = new FormValidator(settingsObject, profilePopup);
+const additionFormValidator = new FormValidator(settingsObject, popupAddCard);
+
 
 function openPopup(popup) {
    popup.classList.add('popup_opened');
@@ -49,7 +63,7 @@ function popupCloseEscButton(evt) {
    }
  };
 
-profileOpenBtn.addEventListener('click', function(){
+profileOpenBtn.addEventListener('click', function() {
    openPopup(profilePopup);
    inputName.value = profileName.textContent;
    inputDescription.value = profileDescription.textContent;
@@ -60,6 +74,7 @@ function handleProfileFormSubmit(evt) {
    profileName.textContent = inputName.value;
    profileDescription.textContent = inputDescription.value;
    closePopup(profilePopup);
+   correctionFormValidator.disabledButton()
  };
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
@@ -69,6 +84,7 @@ profileCloseBtn.addEventListener('click', function() {
  });
 
 openAddCardPopupButton.addEventListener('click', function() {
+   additionFormValidator.disabledButton();
    openPopup(popupAddCard);
  });
 
@@ -80,7 +96,10 @@ popupPictureCloseButton.addEventListener('click', function(){
    closePopup(popupPicture);
  });
 
- const handleCardClick = ({link,name}) => {
+correctionFormValidator.enableValidation();
+additionFormValidator.enableValidation();
+
+const handleCardClick = ({link,name}) => {
   popupOpenPicture.src = link;
   popupOpenTitle.alt = name;
   popupOpenTitle.textContent = name;
@@ -99,59 +118,7 @@ initialCards.forEach((item) => {
 popupAddCard.addEventListener('submit', function(evt) {
   evt.preventDefault();
   placeForCards.prepend(createCard({ name: inputTitle.value, link: inputLink.value }));
+  inputTitle.value = '';
+  inputLink.value = '';
   closePopup(popupAddCard);
 });
-
-// const addCard = (data) => {
-//   placeForCards.prepend(data);
-// };
-
-// function handleAddCardSubmit(evt) {
-//   evt.preventDefault();
-//   const card = {};
-//   card.name = inputTitle.value;
-//   card.link = inputLink.value;
-//   addCard(renderCard(card));
-//   evt.target.reset();
-//   closePopup(popupAddCard);
-//   enableValidation(settingsObject);
-// };
-
-// popupAddCard.addEventListener("submit", handleAddCardSubmit);
-
-// function renderPlaceForCards(data) {
-//   data.forEach((item) => {
-//     placeForCards.append(renderCard(item));
-//   });
-// };
-
-// const renderCard = ({link,name})=>{
-//   const addElement = elementTemplate.querySelector('.element').cloneNode(true);
-
-//       addElement.querySelector(".element__title").textContent = name;
-
-//       const image = addElement.querySelector(".element__image");
-
-//       image.src = link;
-//       image.alt = name;
-
-//       addElement.querySelector(".element__button-delete").addEventListener("click", function (evt) {
-//         evt.target.closest(".element").remove();
-//       });
-
-//       addElement.querySelector(".element__button-like").addEventListener("click", function(evt) {
-//         evt.target.classList.toggle("element__button-like_active");
-//       });
-
-//       image.addEventListener("click",()=>{
-//         popupOpenPicture.src = link;
-//         popupOpenTitle.alt = name;
-//         popupOpenTitle.textContent = name;
-//         openPopup(popupPicture);
-//       });
-
-
-//     return addElement;
-// };
-
-// renderPlaceForCards(initialCards);

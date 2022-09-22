@@ -27,8 +27,8 @@ export default class Card {
     
         return this._element;
       }
-// ************************** Like ********************************************
-    _setEventListeners() { // слушатель клика по сообщению (вызывает _handleClick() которая при помощи toggle подставляет или удаляет class - message__text_is-active)
+
+    _setEventListeners() {
         this._element.querySelector('.element__button-like').addEventListener('click', () => {
           this._handleLikeClick();
         });
@@ -51,25 +51,4 @@ export default class Card {
     _handleDeleteClick() {
         this._element.remove();
       }
-// ********************************************** Open picture ******************************************************
-    // _handleOpenPopup() {
-    //   popupPicture.src = this._image;
-    //   popupElement.classList.add('popup_is-opened');
-    // }
-
-    // _handleClosePopup() {
-    //   popupImage.src = '';
-    //   popupElement.classList.remove('popup_is-opened');
-    // }
-
-    // _setEventListeners() {
-    //   this._element.addEventListener('click', () => {
-    //     this._handleOpenPopup();
-    //   });
-
-    //   popupCloseButton.addEventListener('click', () => {
-    //     this._handleClosePopup();
-    //   });
-    // }
-
 }
