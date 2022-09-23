@@ -3,4 +3,10 @@
   height: 282px;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
+  background-color: black;
+  display: block;
+}
+
+.element__image {
+  cursor: zoom-in;
 }

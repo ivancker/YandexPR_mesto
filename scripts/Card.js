@@ -21,7 +21,6 @@ export default class Card {
         this._setEventListeners();
     
         this._element.querySelector('.element__title').textContent = this._name;
-        this._picture = this._element.querySelector('.element__image');
         this._picture.src = this._link;
         this._picture.alt = this._name;
     
@@ -29,7 +28,10 @@ export default class Card {
       }
 
     _setEventListeners() {
-        this._element.querySelector('.element__button-like').addEventListener('click', () => {
+        this._picture = this._element.querySelector('.element__image');
+        this._likeBtn = this._element.querySelector('.element__button-like');
+
+        this._likeBtn.addEventListener('click', () => {
           this._handleLikeClick();
         });
 
@@ -37,7 +39,7 @@ export default class Card {
           this._handleDeleteClick();
         });
 
-        this._element.querySelector('.element__image').addEventListener('click', () => {
+        this._picture.addEventListener('click', () => {
           this._handleCardClick({
             name: this._name,
             link: this._link
