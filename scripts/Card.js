@@ -16,7 +16,7 @@ export default class Card {
         return cardElement;
       }
 
-    generateCard() {
+    generateCard() {      
         this._element = this._getTemplate();
         this._setEventListeners();
     
@@ -28,7 +28,7 @@ export default class Card {
       }
 
     _setEventListeners() {
-        this._picture = this._element.querySelector('.element__image');
+        this._picture = this._element.querySelector('.element__image'); // не могу записать в generateCard т.к. берем их уже после return this._element (если я правильно понимаю). если записать в generateCard получаю undefined
         this._likeBtn = this._element.querySelector('.element__button-like');
 
         this._likeBtn.addEventListener('click', () => {
@@ -48,7 +48,7 @@ export default class Card {
       }
     
     _handleLikeClick() {
-        this._element.querySelector('.element__button-like').classList.toggle('element__button-like_active');
+      this._likeBtn.classList.toggle('element__button-like_active');
       }
     _handleDeleteClick() {
         this._element.remove();

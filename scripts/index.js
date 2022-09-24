@@ -112,7 +112,7 @@ function createCard(item) {
 
 initialCards.forEach((item) => {
    cardsPlace.append(createCard(item))
- });
+});
 
 popupAddCard.addEventListener('submit', function(evt) {
   evt.preventDefault();
