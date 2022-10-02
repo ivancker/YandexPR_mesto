@@ -19,7 +19,7 @@ _hideInputError (inputElement) {
 };
 
 _setEventListeners() {
-  this._inputsList = Array.from(this._form.querySelectorAll(this._config.inputSelector)); // оборачиваем в Array чтоб в _hasInvalidInput применить some
+  this._inputsList = Array.from(this._form.querySelectorAll(this._config.inputSelector));
 
   this._buttonElement = this._form.querySelector(this._config.submitButtonSelector);
 
@@ -63,6 +63,17 @@ _toggleButtonState() {
   else {
       this.activeButton()
   }
+}
+
+cleanFormErrors() {
+  this._errors = this._form.querySelectorAll(`.${this._config.errorClass}`);
+  this._errors.forEach((error) => {
+    error.classList.remove(this._config.errorClass);
+  })
+  this._inputErrors = document.querySelectorAll(`.${this._config.inputErrorClass}`);
+  this._inputErrors.forEach((inputError) => {
+    inputError.classList.remove(this._config.inputErrorClass);
+  })
 }
 
   enableValidation() {
