@@ -29,4 +29,4 @@
 
 ## Ссылка на сайт:
 
-* [Mesto](https://ivancker.github.io/mesto/index.html)
+* [Mesto](https://ivancker.github.io/mesto/src/index.html)
