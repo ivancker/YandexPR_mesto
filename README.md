@@ -11,6 +11,8 @@
 1. HTML
 2. CSS
 3. JavaScript
+4. NPM
+5. Webpack
 
 **Реализация:**
 * Grid Layout
