@@ -6,20 +6,20 @@
     <meta name="description" content="Яндекс практикум - четвертый спринт">
     <meta name="keywords" content="место">
     <meta name="author" content="Ivan Ko">
-    <link rel="stylesheet" href="pages/index.css">
+    <!-- <link rel="stylesheet" href="pages/index.css"> -->
     <title>Место</title>
   </head>
   <body class="page">
 
     <header class="header">
-      <img class="header__logo" src="./images/logo-white.svg" alt="Лого - Место">
+      <img class="header__logo" src="<%=require('./images/logo-white.svg')%>" alt="Лого - Место">
     </header>
 
     <main class="content">
 
       <section class="profile">
         <div class="profile__container">
-          <img class="profile__avatar" src="./images/avatar-profile.png" alt="Аватар">
+          <img class="profile__avatar" src="<%=require('./images/avatar-profile.png')%>" alt="Аватар">
           <div class="profile__info">
             <div class="profile__name-button">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -100,7 +100,7 @@
       </article>
     </template>
 
-  <script type="module" src="./pages/index.js"></script>
+  <!-- <script type="module" src="./pages/index.js"></script> -->
   
   </body>
 </html>

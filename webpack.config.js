@@ -1,10 +1,9 @@
-//итоговый файл 
-//Все эти правила прописывают в конфигурационном файле «Вебпака»: webpack.config.js:
+//Все правила прописывают в конфигурационном файле «Вебпака»: webpack.config.js:
 const path = require('path'); // подключаем path к конфигу вебпак, ссылка на текущую папку __dirname и относительный путь к точке выхода
 //path: './dist/',
-const HtmlWebpackPlugin = require('html-webpack-plugin'); // подключите плагин HtmlWebpackPlugin, обработка HTML
-const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // подключили плагин CleanWebpackPlugin,каждый раз при сборке проекта удалять содержимое папки dist. 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin') // подключите к проекту mini-css-extract-plugin
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // плагин HtmlWebpackPlugin, обработка HTML
+const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // плагин CleanWebpackPlugin, удаляет содержимое папки dist при новой сборке. 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin') // mini-css-extract-plugin научите «Вебпак» обрабатывать css-файлы
 const WebpackNotifierPlugin = require('webpack-notifier');
 // module.exports — это синтаксис экспорта в Node.js 
 module.exports = {
@@ -25,7 +24,7 @@ module.exports = {
     open: true // сайт будет открываться сам при запуске npm run dev
   },
   module: {
-    rules: [ // rules — это массив правил
+    rules: [ // rules —  правила для обработки js, html и других файлов
       // добавим в него объект правил для бабеля
       {
         // регулярное выражение, которое ищет все js файлы
