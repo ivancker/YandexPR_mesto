@@ -28,30 +28,29 @@ const createCard = (item) => {
   return card
 }
 
-const initialCardsList = new Section({
-  items: initialCards,
+const cardSection = new Section({
   renderer: (item) => {
       const cardElement = createCard(item);
-      initialCardsList.addItem(cardElement)
+      cardSection.addItem(cardElement)
   },
 },
    cardsPlace
 );
 
-initialCardsList.renderItems();
+cardSection.renderItems(initialCards);
 //-----------------------------------------------***********-------------------------------------------
 const cardAddPopup = new PopupWithForm(popupAddCard, (item) => { 
   const newCard = createCard(item);
-  initialCardsList.addItem(newCard);
+  cardSection.addItem(newCard);
   cardAddPopup.close();
-  additionFormValidator.disabledButton();
+  additionFormValidator.disabledSubmitButton();
 });
 
 cardAddPopup.setEventListeners();
 
 openAddCardPopupButton.addEventListener('click', function () {
   additionFormValidator.cleanFormErrors();
-  correctionFormValidator.disabledButton(popupSaveBtn);
+  correctionFormValidator.disabledSubmitButton(popupSaveBtn);
   cardAddPopup.open();
 });
 //-----------------------------------------------***********-------------------------------------------
