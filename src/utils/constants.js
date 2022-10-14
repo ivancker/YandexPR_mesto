@@ -28,6 +28,12 @@ export const initialCards = [
 export const profilePopup = '.profile-popup';
 export const popupAddCard = '.popup-add-card';
 export const popupPicture = '.popup-picture';
+export const popupEditAvatar = '.popup-avatar';
+export const popupWithConfirm = '.popup-confirm';
+
+export const profileAvatar = document.querySelector(".profile__avatar");
+export const editAvatarOpenButton = document.querySelector(".profile__avatar-edit");
+export const avatarForm = document.querySelector('.popup-avatar__form');
 
 export const profileOpenBtn = document.querySelector('.profile__edit-button');
 export const openAddCardPopupButton = document.querySelector('.profile__add-button');

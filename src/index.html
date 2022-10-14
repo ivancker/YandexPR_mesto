@@ -12,14 +12,17 @@
   <body class="page">
 
     <header class="header">
-      <img class="header__logo" src="<%=require('./images/logo-white.svg')%>" alt="Лого - Место">
+      <img class="header__logo" src="./images/logo-white.svg" alt="Лого - Место">
     </header>
 
     <main class="content">
 
       <section class="profile">
         <div class="profile__container">
-          <img class="profile__avatar" src="<%=require('./images/avatar-profile.png')%>" alt="Аватар">
+          <div class="profile__avatar-wrapper">
+            <img class="profile__avatar" src="./images/avatar-profile.png" alt="Аватар">
+            <div class="profile__avatar-edit"></div>
+          </div>
           <div class="profile__info">
             <div class="profile__name-button">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -81,7 +84,7 @@
       </div>
     </div>
 
-    <div class="popup popup-avatar"> 
+    <div class="popup popup-avatar">
       <div class="popup__container">
         <button type="button" class="popup__close-button popup-avatar__close-button"></button>
         <h2 class="popup__title">Обновить аватар</h2>
@@ -91,10 +94,20 @@
             <input id="form__input-link" type="url" name="link" class="popup__input popup__input_value_link" value="" placeholder="Ссылка на аватар" required>
             <span class="form__span form__input-link-error"></span>
 
-            <button type="submit" class="popup__save-button popup-add-card__save-button form__submit">Создать</button>
+            <button type="submit" class="popup__save-button popup-avatar__save-button form__submit">Сохранить</button>
 
         </form>
           
+      </div>
+    </div>
+
+    <div class="popup popup-confirm"> 
+      <div class="popup__container">
+        <button type="button" class="popup__close-button popup-confirm__close-button"></button>
+        <h2 class="popup__title popup__title-confirm">Вы уверены?</h2>
+        <form class="form popup__form popup-confirm__form" name="confirm-form" novalidate></form>
+            <button type="submit" class="popup__save-button popup-confirm__save-button">Да</button>
+        </form>
       </div>
     </div>
 
@@ -112,7 +125,10 @@
         <img class="element__image" src="#" alt="">
         <div class="element__discription">
           <h2 class="element__title"></h2>
-          <button type="button" class="element__button-like"></button>
+          <div class="element__like-container">
+            <button type="button" class="element__button-like"></button>
+            <p class="element__like-number">23</p>
+          </div>
         </div>
       </article>
     </template>
@@ -124,4 +140,7 @@
 
 <!-- Токен: 52773b91-72f0-4734-8d45-05b772d3e059
 Идентификатор группы: cohort-51 -->
+
+<!-- <%=require('./images/logo-white.svg')%>
+<%=require('./images/avatar-profile.png')%> -->
 
