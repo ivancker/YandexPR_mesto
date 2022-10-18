@@ -21,7 +21,10 @@ import {
   profileDescription,
   validationSettingsObject,
   popupSaveBtn,
-  avatarForm
+  avatarForm,
+  popupEditAvatar,
+  editAvatarOpenButton,
+  profileAvatar
 } from '../utils/constants.js';
 //-----------------------------------------------***********-------------------------------------------
 const createCard = (item) => {
@@ -32,7 +35,7 @@ const createCard = (item) => {
 const cardSection = new Section({
   renderer: (item) => {
       const cardElement = createCard(item);
-      cardSection.addItem(cardElement)
+      cardSection.addItem(cardElement);
   },
 },
    cardsPlace
@@ -54,26 +57,45 @@ openAddCardPopupButton.addEventListener('click', function () {
   cardAddPopup.open();
 });
 //-----------------------------------------------***********-------------------------------------------
-const profile = new UserInfo({ nameSelector: profileName, descriptionSelector: profileDescription });
+const profileInfo = new UserInfo({
+  nameSelector: profileName,
+  descriptionSelector: profileDescription,
+  avatarSelector: profileAvatar,
+});
 const profileEditPopup = new PopupWithForm(profilePopup, (dataInputs) => {
-    profile.setUserInfo(dataInputs);
+    profileInfo.setUserInfo(dataInputs);
 });
 
 profileEditPopup.setEventListeners();
 
 profileOpenBtn.addEventListener('click', () => {
-  profileEditPopup.setInputValues(profile.getUserInfo());
+  profileEditPopup.setInputValues(profileInfo.getUserInfo());
   correctionFormValidator.disabledSubmitButton(popupSaveBtn);
   correctionFormValidator.cleanFormErrors();
   profileEditPopup.open();
 });
 //-----------------------------------------------***********-------------------------------------------
 const popupPictureZoom = new PopupWithImage(popupPicture);
+
 popupPictureZoom.setEventListeners();
 
 function handleCardClick({name, link}) {
   popupPictureZoom.open(name, link);
 }
+//-----------------------------------------------***********-------------------------------------------
+
+const avatarPopup = new PopupWithForm(popupEditAvatar, (item) => {
+  avatarFormValidator.disabledSubmitButton();
+  // avatarPopup.close();
+});
+
+avatarPopup.setEventListeners();
+
+editAvatarOpenButton.addEventListener('click', () => {
+  avatarFormValidator.cleanFormErrors();
+  avatarPopup.open();
+});
+
 //-----------------------------------------------***********-------------------------------------------
 const correctionFormValidator = new FormValidator(validationSettingsObject, profileForm);
 const additionFormValidator = new FormValidator(validationSettingsObject, addCardForm);
