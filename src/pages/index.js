@@ -20,7 +20,8 @@ import {
   profileName,
   profileDescription,
   validationSettingsObject,
-  popupSaveBtn
+  popupSaveBtn,
+  avatarForm
 } from '../utils/constants.js';
 //-----------------------------------------------***********-------------------------------------------
 const createCard = (item) => {
@@ -50,7 +51,6 @@ cardAddPopup.setEventListeners();
 
 openAddCardPopupButton.addEventListener('click', function () {
   additionFormValidator.cleanFormErrors();
-  correctionFormValidator.disabledSubmitButton(popupSaveBtn);
   cardAddPopup.open();
 });
 //-----------------------------------------------***********-------------------------------------------
@@ -63,6 +63,7 @@ profileEditPopup.setEventListeners();
 
 profileOpenBtn.addEventListener('click', () => {
   profileEditPopup.setInputValues(profile.getUserInfo());
+  correctionFormValidator.disabledSubmitButton(popupSaveBtn);
   correctionFormValidator.cleanFormErrors();
   profileEditPopup.open();
 });
@@ -76,6 +77,8 @@ function handleCardClick({name, link}) {
 //-----------------------------------------------***********-------------------------------------------
 const correctionFormValidator = new FormValidator(validationSettingsObject, profileForm);
 const additionFormValidator = new FormValidator(validationSettingsObject, addCardForm);
+const avatarFormValidator = new FormValidator(validationSettingsObject, avatarForm);
 
 correctionFormValidator.enableValidation();
 additionFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
