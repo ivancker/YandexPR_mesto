@@ -43,17 +43,20 @@ const cardSection = new Section({
 
 cardSection.renderItems(initialCards);
 //-----------------------------------------------***********-------------------------------------------
-const cardAddPopup = new PopupWithForm(popupAddCard, (item) => { 
-  const newCard = createCard(item);
-  cardSection.addItem(newCard);
-  cardAddPopup.close();
-  additionFormValidator.disabledSubmitButton();
+const cardAddPopup = new PopupWithForm(popupAddCard, (item) => {
+  cardAddPopup.setLoading(true);
+
+  // const newCard = createCard(item);
+  // cardSection.addItem(newCard);
+  // cardAddPopup.close();
+  // additionFormValidator.disabledSubmitButton();
 });
 
 cardAddPopup.setEventListeners();
 
 openAddCardPopupButton.addEventListener('click', function () {
   additionFormValidator.cleanFormErrors();
+  cardAddPopup.setLoading(false);
   cardAddPopup.open();
 });
 //-----------------------------------------------***********-------------------------------------------
@@ -63,7 +66,8 @@ const profileInfo = new UserInfo({
   avatarSelector: profileAvatar,
 });
 const profileEditPopup = new PopupWithForm(profilePopup, (dataInputs) => {
-    profileInfo.setUserInfo(dataInputs);
+  profileEditPopup.setLoading(true);
+  profileInfo.setUserInfo(dataInputs);
 });
 
 profileEditPopup.setEventListeners();
@@ -72,6 +76,7 @@ profileOpenBtn.addEventListener('click', () => {
   profileEditPopup.setInputValues(profileInfo.getUserInfo());
   correctionFormValidator.disabledSubmitButton(popupSaveBtn);
   correctionFormValidator.cleanFormErrors();
+  profileEditPopup.setLoading(false);
   profileEditPopup.open();
 });
 //-----------------------------------------------***********-------------------------------------------
@@ -84,9 +89,10 @@ function handleCardClick({name, link}) {
 }
 //-----------------------------------------------***********-------------------------------------------
 
-const avatarPopup = new PopupWithForm(popupEditAvatar, (item) => {
+const avatarPopup = new PopupWithForm(popupEditAvatar, (data) => {
+  profileInfo.setInputValues(data);
   avatarFormValidator.disabledSubmitButton();
-  // avatarPopup.close();
+  avatarPopup.close();
 });
 
 avatarPopup.setEventListeners();

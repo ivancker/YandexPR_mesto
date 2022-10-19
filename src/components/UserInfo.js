@@ -17,7 +17,7 @@ export default class UserInfo {
 		this._profileDescription.textContent = data.description;
 	}
 
-	setAvatarInfo(data) {
+	setAvatar(data) {
 		this._profileAvatar.src = data.avatar;
 	}
 }
