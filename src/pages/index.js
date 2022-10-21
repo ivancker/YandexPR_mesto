@@ -6,6 +6,7 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
+import PopupWithConfirm from '../components/PopupWithConfirm.js';
 
 import {
   cardsPlace,
@@ -24,8 +25,21 @@ import {
   avatarForm,
   popupEditAvatar,
   editAvatarOpenButton,
-  profileAvatar
+  profileAvatar,
+  popupWithConfirm,
+  cardDeleteBtn
 } from '../utils/constants.js';
+
+const popupConfirm = new PopupWithConfirm(popupWithConfirm);
+
+
+popupConfirm.setEventListeners();
+
+cardDeleteBtn.addEventListener('click', () => {
+  popupConfirm.open();
+});
+
+
 //-----------------------------------------------***********-------------------------------------------
 const createCard = (item) => {
   const card = new Card(item, '.element-template', handleCardClick).generateCard();
@@ -45,11 +59,10 @@ cardSection.renderItems(initialCards);
 //-----------------------------------------------***********-------------------------------------------
 const cardAddPopup = new PopupWithForm(popupAddCard, (item) => {
   cardAddPopup.setLoading(true);
-
-  // const newCard = createCard(item);
-  // cardSection.addItem(newCard);
-  // cardAddPopup.close();
-  // additionFormValidator.disabledSubmitButton();
+  const newCard = createCard(item);
+  cardSection.addItem(newCard);
+  cardAddPopup.close();
+  additionFormValidator.disabledSubmitButton();
 });
 
 cardAddPopup.setEventListeners();
@@ -90,8 +103,8 @@ function handleCardClick({name, link}) {
 //-----------------------------------------------***********-------------------------------------------
 
 const avatarPopup = new PopupWithForm(popupEditAvatar, (data) => {
-  profileInfo.setInputValues(data);
-  avatarFormValidator.disabledSubmitButton();
+  avatarPopup.setLoading(true);
+  profileInfo.setAvatar(data);
   avatarPopup.close();
 });
 
@@ -99,6 +112,8 @@ avatarPopup.setEventListeners();
 
 editAvatarOpenButton.addEventListener('click', () => {
   avatarFormValidator.cleanFormErrors();
+  avatarFormValidator.disabledSubmitButton(popupSaveBtn);
+  avatarPopup.setLoading(false);
   avatarPopup.open();
 });
 
