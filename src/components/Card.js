@@ -1,9 +1,11 @@
 export default class Card {
-  constructor(data, templateSelector, handleCardClick) {
+  constructor(data, templateSelector, handleCardClick, handleBasketClick, handleDelete) {
       this._name = data.name;
       this._link = data.link;
       this._templateSelector = templateSelector;
       this._handleCardClick = handleCardClick;
+      this._handleBasketClick = handleBasketClick;
+      this._handlDelete = handleDelete;
     }
 
   _getTemplate() {
@@ -21,7 +23,7 @@ export default class Card {
 
       this._picture = this._element.querySelector('.element__image');
       this._likeBtn = this._element.querySelector('.element__button-like');
-      
+
       this._setEventListeners();
 
       this._element.querySelector('.element__title').textContent = this._name;
@@ -37,7 +39,11 @@ export default class Card {
       });
 
       this._element.querySelector('.element__button-delete').addEventListener('click', () => {
-        this._handleDeleteClick();
+        this._handleBasketClick();
+      });
+
+      document.querySelector('.popup-confirm__save-button').addEventListener('click', () => {
+        this._handlDeleteClick();
       });
 
       this._picture.addEventListener('click', () => {
@@ -51,8 +57,8 @@ export default class Card {
   _handleLikeClick() {
       this._likeBtn.classList.toggle('element__button-like_active');
     }
-    
-  _handleDeleteClick() {
+
+  _handlDeleteClick() {
       this._element.remove();
     }
 }

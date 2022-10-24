@@ -27,22 +27,13 @@ import {
   editAvatarOpenButton,
   profileAvatar,
   popupWithConfirm,
-  cardDeleteBtn
+  popupYesBtn
 } from '../utils/constants.js';
-
-const popupConfirm = new PopupWithConfirm(popupWithConfirm);
-
-
-popupConfirm.setEventListeners();
-
-cardDeleteBtn.addEventListener('click', () => {
-  popupConfirm.open();
-});
 
 
 //-----------------------------------------------***********-------------------------------------------
 const createCard = (item) => {
-  const card = new Card(item, '.element-template', handleCardClick).generateCard();
+  const card = new Card(item, '.element-template', handleCardClick, handleBasketClick, handleDelete).generateCard();
   return card
 }
 
@@ -118,6 +109,25 @@ editAvatarOpenButton.addEventListener('click', () => {
 });
 
 //-----------------------------------------------***********-------------------------------------------
+
+const popupConfirm = new PopupWithConfirm(popupWithConfirm);
+
+
+popupConfirm.setEventListeners();
+
+function handleBasketClick() {
+  popupConfirm.open();
+}
+
+function handleDelete() {
+  popupConfirm.close();
+}
+
+popupYesBtn.addEventListener('click', () => {
+  popupConfirm.close();
+});
+
+
 const correctionFormValidator = new FormValidator(validationSettingsObject, profileForm);
 const additionFormValidator = new FormValidator(validationSettingsObject, addCardForm);
 const avatarFormValidator = new FormValidator(validationSettingsObject, avatarForm);

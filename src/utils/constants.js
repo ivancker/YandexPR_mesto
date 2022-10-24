@@ -31,7 +31,7 @@ export const popupPicture = '.popup-picture';
 export const popupEditAvatar = '.popup-avatar';
 export const popupWithConfirm = '.popup-confirm';
 
-export const cardDeleteBtn = document.querySelectorAll('.element__button-delete');
+export const popupYesBtn = document.querySelector('.popup-confirm__save-button');
 
 export const profileAvatar = '.profile__avatar';
 export const editAvatarOpenButton = document.querySelector(".profile__avatar-edit");
