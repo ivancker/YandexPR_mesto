@@ -7,6 +7,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import PopupWithConfirm from '../components/PopupWithConfirm.js';
+import Api from '../components/Api.js';
 
 import {
   cardsPlace,
@@ -30,6 +31,17 @@ import {
   popupYesBtn
 } from '../utils/constants.js';
 
+const apiConfig = {
+  url: 'https://mesto.nomoreparties.co/v1/cohort-51/cards',
+  headers: {
+    authorization: '52773b91-72f0-4734-8d45-05b772d3e059',
+    "Content-type": 'application/json',
+  },
+}
+
+const apiNew = new Api(apiConfig);
+
+
 
 //-----------------------------------------------***********-------------------------------------------
 const createCard = (item) => {
@@ -46,7 +58,16 @@ const cardSection = new Section({
    cardsPlace
 );
 
-cardSection.renderItems(initialCards);
+apiNew.getAllCards()
+  .then((result) => {
+    cardSection.renderItems(result);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+  console.log('end');
+
+// cardSection.renderItems(initialCards);
 //-----------------------------------------------***********-------------------------------------------
 const cardAddPopup = new PopupWithForm(popupAddCard, (item) => {
   cardAddPopup.setLoading(true);
@@ -112,7 +133,6 @@ editAvatarOpenButton.addEventListener('click', () => {
 
 const popupConfirm = new PopupWithConfirm(popupWithConfirm);
 
-
 popupConfirm.setEventListeners();
 
 function handleBasketClick() {
@@ -127,7 +147,6 @@ popupYesBtn.addEventListener('click', () => {
   popupConfirm.close();
 });
 
-
 const correctionFormValidator = new FormValidator(validationSettingsObject, profileForm);
 const additionFormValidator = new FormValidator(validationSettingsObject, addCardForm);
 const avatarFormValidator = new FormValidator(validationSettingsObject, avatarForm);
@@ -135,3 +154,4 @@ const avatarFormValidator = new FormValidator(validationSettingsObject, avatarFo
 correctionFormValidator.enableValidation();
 additionFormValidator.enableValidation();
 avatarFormValidator.enableValidation();
+
