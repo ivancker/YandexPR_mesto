@@ -5,11 +5,11 @@ export default class Api {
   }
 
   getAllCards() {
-    return fetch(this._url, {
+    return fetch(`${this._url}${'cards'}`, {
       method: "GET",
       headers: this._headers,
     })
-    .then((response) =>{
+    .then((response) => {
       if (response.ok)  {
         return response.json();
       } else {
@@ -18,5 +18,20 @@ export default class Api {
     })
   }
   deleteCard() {}
-  addNewCard() {}
+  addNewCard({ name}) {
+    return fetch(this._url, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({ name })
+    })
+    .then((response) => {
+      if (response.ok)  {
+        return response.json();
+      } else {
+        Promise.reject(`Ошибка: ${response.status} ${response.statusText}`);
+      }
+    })
+
+
+  }
 }

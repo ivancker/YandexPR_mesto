@@ -32,7 +32,7 @@ import {
 } from '../utils/constants.js';
 
 const apiConfig = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-51/cards',
+  url: 'https://mesto.nomoreparties.co/v1/cohort-51/',
   headers: {
     authorization: '52773b91-72f0-4734-8d45-05b772d3e059',
     "Content-type": 'application/json',
@@ -45,7 +45,7 @@ const apiNew = new Api(apiConfig);
 
 //-----------------------------------------------***********-------------------------------------------
 const createCard = (item) => {
-  const card = new Card(item, '.element-template', handleCardClick, handleBasketClick, handleDelete).generateCard();
+  const card = new Card(item, '.element-template', handleCardClick, handleBasketClick, handleDelete).apiNew.addNewCard();
   return card
 }
 
