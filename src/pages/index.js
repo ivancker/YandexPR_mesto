@@ -32,47 +32,56 @@ import {
 } from '../utils/constants.js';
 
 const apiConfig = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-51/',
+  url: 'https://mesto.nomoreparties.co/v1/cohort-54/',
   headers: {
-    authorization: '52773b91-72f0-4734-8d45-05b772d3e059',
+    authorization: 'e8f18267-2481-4711-ba12-1cc30ee751c6',
     "Content-type": 'application/json',
   },
 }
 
-const apiNew = new Api(apiConfig);
-
-
+const api = new Api(apiConfig);
 
 //-----------------------------------------------***********-------------------------------------------
 const createCard = (item) => {
-  const card = new Card(item, '.element-template', handleCardClick, handleBasketClick, handleDelete).apiNew.addNewCard();
+  const card = new Card(item, '.element-template', handleCardClick, handleBasketClick, handleDelete).generateCard();
   return card
 }
 
 const cardSection = new Section({
   renderer: (item) => {
       const cardElement = createCard(item);
-      cardSection.addItem(cardElement);
+      cardSection.addCards(cardElement);
   },
 },
    cardsPlace
 );
 
-apiNew.getAllCards()
-  .then((result) => {
-    cardSection.renderItems(result);
+api.getAllCards()
+  .then((cards) => {
+    cardSection.renderItems(cards);
   })
   .catch((error) => {
-    console.log(error);
+    console.log(`Ошибка при загрузке карточек: ${error}`);
   });
-  console.log('end');
 
 // cardSection.renderItems(initialCards);
 //-----------------------------------------------***********-------------------------------------------
 const cardAddPopup = new PopupWithForm(popupAddCard, (item) => {
+  console.log('value=', item);
   cardAddPopup.setLoading(true);
-  const newCard = createCard(item);
-  cardSection.addItem(newCard);
+  // const newCard = createCard(item);
+  // cardSection.addItem(newCard);
+
+  api.addNewCard(item)
+    .then((newCardData) => {
+      const newCard = createCard(newCardData);
+      cardSection.addItem(newCard);
+    })
+    .catch((error) => {
+      console.log(`Ошибка при добавлении карточки: ${error}`);
+    })
+    .finally(() => cardAddPopup.setLoading(false));
+
   cardAddPopup.close();
   additionFormValidator.disabledSubmitButton();
 });
@@ -81,7 +90,7 @@ cardAddPopup.setEventListeners();
 
 openAddCardPopupButton.addEventListener('click', function () {
   additionFormValidator.cleanFormErrors();
-  cardAddPopup.setLoading(false);
+  // cardAddPopup.setLoading(false);
   cardAddPopup.open();
 });
 //-----------------------------------------------***********-------------------------------------------
