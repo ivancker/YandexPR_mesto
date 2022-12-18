@@ -54,7 +54,7 @@
           <input id="form__input-name" type="text" name="name" class="popup__input popup__input_value_name" value="" minlength="2" maxlength="40" required>
           <span class="form__span form__input-name-error"></span>
 
-          <input id="form__input-description" type="text" name="description" class="popup__input popup__input_value_description" value="" minlength="2" maxlength="200" required>
+          <input id="form__input-description" type="text" name="about" class="popup__input popup__input_value_description" value="" minlength="2" maxlength="200" required>
           <span class="form__span form__input-description-error"></span>
 
           <button type="submit" class="popup__save-button form__submit">Сохранить</button>
@@ -105,8 +105,8 @@
       <div class="popup__container">
         <button type="button" class="popup__close-button popup-confirm__close-button"></button>
         <h2 class="popup__title popup__title-confirm">Вы уверены?</h2>
-        <form class="form popup__form popup-confirm__form" name="confirm-form" novalidate></form>
-            <button type="submit" class="popup__save-button popup-confirm__save-button">Да</button>
+        <form class="form popup__form popup-confirm__form" name="confirm-form" novalidate>
+          <button type="submit" class="popup__save-button popup-confirm__save-button">Да</button>
         </form>
       </div>
     </div>
@@ -127,7 +127,7 @@
           <h2 class="element__title"></h2>
           <div class="element__like-container">
             <button type="button" class="element__button-like"></button>
-            <p class="element__like-number">23</p>
+            <p class="element__like-number"></p>
           </div>
         </div>
       </article>
