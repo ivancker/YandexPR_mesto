@@ -66,13 +66,8 @@ export default class FormValidator {
   }
 
   cleanFormErrors() {
-    this._errors = this._form.querySelectorAll(`.${this._config.errorClass}`);
-    this._errors.forEach((error) => {
-      error.classList.remove(this._config.errorClass);
-    });
-    this._inputErrors = this._form.querySelectorAll(`.${this._config.inputErrorClass}`);
-    this._inputErrors.forEach((inputError) => {
-      inputError.classList.remove(this._config.inputErrorClass);
+    this._inputsList.forEach((input) => {
+      this._hideInputError(input)
     });
   }
 
