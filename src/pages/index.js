@@ -1,4 +1,4 @@
-import './index.css';
+// import './index.css';
 
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
@@ -77,7 +77,9 @@ const createCard = (item) => {
         .then(() => {
           console.log(cardId);
           card.deleteClick();
-          popupConfirm.close()
+        })
+        .then(() => {
+          popupConfirm.close();
         })
         .catch((error) => {
           console.log(`Ошибка при удалении карточки: ${error}`)
@@ -130,14 +132,16 @@ const cardAddPopup = new PopupWithForm(popupAddCard, (item) => {
   api.addNewCard(item)
     .then((newCardData) => {
       const newCard = createCard(newCardData);
-      cardSection.addItem(newCard)
+      cardSection.addItem(newCard);
+    })
+    .then(() => {
+      cardAddPopup.close()
     })
     .catch((error) => {
       console.log(`Ошибка при добавлении карточки: ${error}`);
     })
     .finally(() => cardAddPopup.setLoading(false))
 
-  cardAddPopup.close();
   additionFormValidator.disabledSubmitButton()
 })
 
@@ -176,6 +180,8 @@ const avatarPopup = new PopupWithForm(popupEditAvatar, (data) => {
     .then((userData) => {
       console.log(userData.avatar);
       profileInfo.setAvatar(userData.avatar);
+    })
+    .then(() => {
       avatarPopup.close();
     })
     .catch((error) => {
