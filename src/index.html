@@ -12,7 +12,7 @@
   <body class="page">
 
     <header class="header">
-      <img class="header__logo" src="./images/logo-white.svg" alt="Лого - Место">
+      <img class="header__logo" src="<%=require('./images/logo-white.svg')%>" alt="Лого - Место">
     </header>
 
     <main class="content">
@@ -20,7 +20,7 @@
       <section class="profile">
         <div class="profile__container">
           <div class="profile__avatar-wrapper">
-            <img class="profile__avatar" src="./images/avatar-profile.png" alt="Аватар">
+            <img class="profile__avatar" src="<%=require('./images/avatar-profile.png')%>" alt="Аватар">
             <div class="profile__avatar-edit"></div>
           </div>
           <div class="profile__info">
@@ -137,10 +137,4 @@
   
   </body>
 </html>
-
-<!-- Токен: 52773b91-72f0-4734-8d45-05b772d3e059
-Идентификатор группы: cohort-51 -->
-
-<!-- <%=require('./images/logo-white.svg')%>
-<%=require('./images/avatar-profile.png')%> -->
 
