@@ -141,12 +141,11 @@ const cardAddPopup = new PopupWithForm(popupAddCard, (item) => {
       console.log(`Ошибка при добавлении карточки: ${error}`);
     })
     .finally(() => cardAddPopup.setLoading(false))
-
-  additionFormValidator.disabledSubmitButton()
 })
 
 openAddCardPopupButton.addEventListener('click', () => {
   additionFormValidator.cleanFormErrors();
+  additionFormValidator.disabledSubmitButton();
   cardAddPopup.open()
 })
 
@@ -158,6 +157,7 @@ const profileEditPopup = new PopupWithForm(profilePopup, (dataInputs) => {
   api.addNewUserInfo(dataInputs)
     .then((newData) => {
       profileInfo.setUserInfo(newData.name, newData.about)
+      profileEditPopup.close()
     })
     .catch((error) => {
       console.log(`Ошибка при добавлении информации в профиль: ${error}`);
